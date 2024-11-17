@@ -86,10 +86,12 @@ public:
         }
     }
 
+    int currentPage() const override { return currentPage_; };
+
     bool usedNextBefore() const override { return true; }
 
     const CandidateWord &candidateFromAll(int idx) const override;
-    int totalSize() const override;
+    int totalSize() const override { return totalSize_; };
 
 #ifndef FCITX_RIME_NO_HIGHLIGHT_CANDIDATE
     int globalCursorIndex() const override;
@@ -113,6 +115,8 @@ private:
     std::vector<Text> labels_;
     bool hasPrev_ = false;
     bool hasNext_ = false;
+    int currentPage_ = 0;
+    int totalSize_ = 0;
     CandidateLayoutHint layout_ = CandidateLayoutHint::NotSet;
     int cursor_ = -1;
 
