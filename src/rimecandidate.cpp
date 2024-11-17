@@ -62,7 +62,7 @@ void RimeGlobalCandidateWord::forget(RimeState *state) const {
 RimeCandidateList::RimeCandidateList(RimeEngine *engine, InputContext *ic,
                                      const RimeContext &context)
     : engine_(engine), ic_(ic), hasPrev_(context.menu.page_no != 0),
-      hasNext_(!context.menu.is_last_page) {
+      hasNext_(!context.menu.is_last_page), currentPage_(context.menu.page_no), totalSize_(context.data_size) {
     setPageable(this);
     setBulk(this);
     setActionable(this);
@@ -144,7 +144,6 @@ const CandidateWord &RimeCandidateList::candidateFromAll(int idx) const {
     return *globalCandidateWords_[index];
 }
 
-int RimeCandidateList::totalSize() const { return -1; }
 
 bool RimeCandidateList::hasAction(const CandidateWord & /*candidate*/) const {
 #ifndef FCITX_RIME_NO_DELETE_CANDIDATE
